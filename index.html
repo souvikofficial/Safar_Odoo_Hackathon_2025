@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Community Clothing Exchange</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <div class="nav__brand">
+                <h1 class="nav__logo">ReWear</h1>
+            </div>
+            
+            <div class="nav__menu" id="navMenu">
+                <a href="#" class="nav__link" data-page="home">Home</a>
+                <a href="#" class="nav__link" data-page="browse">Browse</a>
+                <a href="#" class="nav__link" data-page="dashboard">Dashboard</a>
+                <a href="#" class="nav__link nav__link--hidden" data-page="admin" id="adminLink">Admin</a>
+            </div>
+            
+            <div class="nav__actions">
+                <button class="btn btn--secondary" id="loginBtn">Login</button>
+                <button class="btn btn--primary" id="signupBtn">Sign Up</button>
+                <div class="nav__user nav__user--hidden" id="userProfile">
+                    <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Profile" class="nav__avatar" id="userAvatar">
+                    <span class="nav__username" id="username">User</span>
+                    <button class="btn btn--text" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            
+            <button class="nav__toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="mainContent">
+        <!-- Landing Page -->
+        <section class="page" id="homePage">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero__container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Give Your Clothes a Second Life</h1>
+                        <p class="hero__subtitle">Join our sustainable fashion community. Swap, share, and discover amazing pre-loved clothing while reducing textile waste.</p>
+                        <div class="hero__actions">
+                            <button class="btn btn--primary btn--large" data-action="browse">Start Swapping</button>
+                            <button class="btn btn--secondary btn--large" data-action="add-item">List an Item</button>
+                        </div>
+                    </div>
+                    <div class="hero__image">
+                        <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sustainable fashion" class="hero__img">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Items -->
+            <section class="featured">
+                <div class="container">
+                    <h2 class="featured__title">Featured Items</h2>
+                    <div class="carousel" id="featuredCarousel">
+                        <div class="carousel__container">
+                            <div class="carousel__track" id="carouselTrack">
+                                <!-- Items will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <button class="carousel__btn carousel__btn--prev" id="carouselPrev">❮</button>
+                        <button class="carousel__btn carousel__btn--next" id="carouselNext">❯</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Browse Items Page -->
+        <section class="page page--hidden" id="browsePage">
+            <div class="container">
+                <div class="page-header">
+                    <nav class="breadcrumb">
+                        <a href="#" data-page="home">Home</a>
+                        <span>Browse Items</span>
+                    </nav>
+                    <h1 class="page-header__title">Browse Items</h1>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filters__search">
+                        <input type="text" class="input" placeholder="Search items..." id="searchInput">
+                    </div>
+                    <div class="filters__controls">
+                        <select class="select" id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="tops">Tops</option>
+                            <option value="bottoms">Bottoms</option>
+                            <option value="dresses">Dresses</option>
+                            <option value="outerwear">Outerwear</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                        <select class="select" id="sizeFilter">
+                            <option value="">All Sizes</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                        <select class="select" id="conditionFilter">
+                            <option value="">All Conditions</option>
+                            <option value="like-new">Like New</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Items Grid -->
+                <div class="items-grid" id="itemsGrid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <!-- Pagination will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Page -->
+        <section class="page page--hidden" id="dashboardPage">
+            <div class="container">
+                <div class="page-header">
+                    <nav class="breadcrumb">
+                        <a href="#" data-page="home">Home</a>
+                        <span>Dashboard</span>
+                    </nav>
+                    <h1 class="page-header__title">My Dashboard</h1>
+                </div>
+
+                <!-- Profile Card -->
+                <div class="profile-card" id="profileCard">
+                    <div class="profile-card__avatar">
+                        <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Profile" class="profile-card__img" id="profileAvatar">
+                    </div>
+                    <div class="profile-card__info">
+                        <h3 class="profile-card__name" id="profileName">User Name</h3>
+                        <p class="profile-card__email" id="profileEmail">user@email.com</p>
+                        <div class="profile-card__points">
+                            <span class="points-badge" id="profilePoints">0 Points</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--secondary" id="editProfileBtn">Edit Profile</button>
+                </div>
+
+                <!-- Dashboard Tabs -->
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__btn tabs__btn--active" data-tab="my-items">My Items</button>
+                        <button class="tabs__btn" data-tab="ongoing-swaps">Ongoing Swaps</button>
+                        <button class="tabs__btn" data-tab="completed-swaps">Completed Swaps</button>
+                    </div>
+
+                    <div class="tabs__content">
+                        <div class="tab-pane tab-pane--active" id="my-items">
+                            <div class="tab-pane__header">
+                                <h3>My Listed Items</h3>
+                                <button class="btn btn--primary" data-action="add-item">Add New Item</button>
+                            </div>
+                            <div class="items-grid" id="myItemsGrid">
+                                <!-- User's items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="ongoing-swaps">
+                            <h3>Ongoing Swaps</h3>
+                            <div class="swaps-list" id="ongoingSwapsList">
+                                <!-- Ongoing swaps will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="completed-swaps">
+                            <h3>Completed Swaps</h3>
+                            <div class="swaps-list" id="completedSwapsList">
+                                <!-- Completed swaps will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Item Detail Page -->
+        <section class="page page--hidden" id="itemDetailPage">
+            <div class="container">
+                <div class="page-header">
+                    <nav class="breadcrumb" id="itemBreadcrumb">
+                        <a href="#" data-page="home">Home</a>
+                        <a href="#" data-page="browse">Browse</a>
+                        <span id="itemBreadcrumbTitle">Item</span>
+                    </nav>
+                </div>
+
+                <div class="item-detail" id="itemDetail">
+                    <!-- Item detail will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Item Page -->
+        <section class="page page--hidden" id="addItemPage">
+            <div class="container">
+                <div class="page-header">
+                    <nav class="breadcrumb">
+                        <a href="#" data-page="home">Home</a>
+                        <a href="#" data-page="dashboard">Dashboard</a>
+                        <span>Add Item</span>
+                    </nav>
+                    <h1 class="page-header__title">List a New Item</h1>
+                </div>
+
+                <form class="add-item-form" id="addItemForm">
+                    <div class="form-step form-step--active" data-step="1">
+                        <h3>Step 1: Upload Images</h3>
+                        <div class="image-upload" id="imageUpload">
+                            <div class="image-upload__dropzone" id="dropzone">
+                                <p>Drag & drop images here or click to select</p>
+                                <input type="file" id="imageInput" multiple accept="image/*" hidden>
+                            </div>
+                            <div class="image-upload__preview" id="imagePreview"></div>
+                        </div>
+                        <button type="button" class="btn btn--primary" id="nextStep1">Next Step</button>
+                    </div>
+
+                    <div class="form-step" data-step="2">
+                        <h3>Step 2: Item Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="itemTitle" class="label">Title</label>
+                                <input type="text" id="itemTitle" class="input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemCategory" class="label">Category</label>
+                                <select id="itemCategory" class="select" required>
+                                    <option value="">Select Category</option>
+                                    <option value="tops">Tops</option>
+                                    <option value="bottoms">Bottoms</option>
+                                    <option value="dresses">Dresses</option>
+                                    <option value="outerwear">Outerwear</option>
+                                    <option value="accessories">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemType" class="label">Type</label>
+                                <input type="text" id="itemType" class="input" placeholder="e.g., T-shirt, Jeans, Dress" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemSize" class="label">Size</label>
+                                <select id="itemSize" class="select" required>
+                                    <option value="">Select Size</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemCondition" class="label">Condition</label>
+                                <select id="itemCondition" class="select" required>
+                                    <option value="">Select Condition</option>
+                                    <option value="like-new">Like New</option>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemPoints" class="label">Point Value</label>
+                                <input type="number" id="itemPoints" class="input" min="1" max="100" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription" class="label">Description</label>
+                            <textarea id="itemDescription" class="textarea" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemTags" class="label">Tags (comma-separated)</label>
+                            <input type="text" id="itemTags" class="input" placeholder="vintage, casual, summer">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn--secondary" id="prevStep2">Previous</button>
+                            <button type="submit" class="btn btn--primary">Submit Item</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Page -->
+        <section class="page page--hidden" id="adminPage">
+            <div class="container">
+                <div class="page-header">
+                    <nav class="breadcrumb">
+                        <a href="#" data-page="home">Home</a>
+                        <span>Admin Panel</span>
+                    </nav>
+                    <h1 class="page-header__title">Admin Panel</h1>
+                </div>
+
+                <div class="admin-tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__btn tabs__btn--active" data-tab="pending-items">Pending Items</button>
+                        <button class="tabs__btn" data-tab="all-users">Users</button>
+                        <button class="tabs__btn" data-tab="announcements">Announcements</button>
+                    </div>
+
+                    <div class="tabs__content">
+                        <div class="tab-pane tab-pane--active" id="pending-items">
+                            <h3>Pending Item Approvals</h3>
+                            <div class="admin-items" id="pendingItemsList">
+                                <!-- Pending items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="all-users">
+                            <h3>User Management</h3>
+                            <div class="admin-users" id="usersList">
+                                <!-- Users will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="announcements">
+                            <h3>Announcements</h3>
+                            <form class="announcement-form" id="announcementForm">
+                                <div class="form-group">
+                                    <label for="announcementTitle" class="label">Title</label>
+                                    <input type="text" id="announcementTitle" class="input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="announcementMessage" class="label">Message</label>
+                                    <textarea id="announcementMessage" class="textarea" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn--primary">Create Announcement</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="authModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title" id="authModalTitle">Login</h2>
+                <button class="modal__close" id="closeAuthModal">&times;</button>
+            </div>
+            <div class="modal__body">
+                <form class="auth-form" id="authForm">
+                    <div class="form-group">
+                        <label for="authEmail" class="label">Email</label>
+                        <input type="email" id="authEmail" class="input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="authPassword" class="label">Password</label>
+                        <input type="password" id="authPassword" class="input" required>
+                    </div>
+                    <div class="form-group form-group--hidden" id="confirmPasswordGroup">
+                        <label for="confirmPassword" class="label">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="input">
+                    </div>
+                    <div class="form-group form-group--hidden" id="displayNameGroup">
+                        <label for="displayName" class="label">Display Name</label>
+                        <input type="text" id="displayName" class="input">
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full" id="authSubmitBtn">Login</button>
+                    <p class="auth-form__switch">
+                        <span id="authSwitchText">Don't have an account?</span>
+                        <a href="#" id="authSwitchLink">Sign up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="imageModal">
+        <div class="modal__content modal__content--image">
+            <button class="modal__close" id="closeImageModal">&times;</button>
+            <img src="" alt="Full size image" id="modalImage" class="modal__image">
+            <div class="modal__nav">
+                <button class="modal__nav-btn" id="prevImage">❮</button>
+                <button class="modal__nav-btn" id="nextImage">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading" id="loadingSpinner">
+        <div class="loading__spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- App Scripts -->
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
